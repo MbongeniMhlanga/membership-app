@@ -19,7 +19,7 @@ class MembershipApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Luma Membership',
+        title: 'Membership',
         theme: ThemeData(
           useMaterial3: true,
           brightness: Brightness.dark,
@@ -128,7 +128,7 @@ class _AuthScreenState extends State<AuthScreen> {
                               child: const Icon(Icons.auto_awesome,
                                   color: Colors.white)),
                           const SizedBox(width: 12),
-                          const Text('LUMA',
+                          const Text('MEMBERSHIP',
                               style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w800,
@@ -138,7 +138,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         Text(
                             isSignUp
                                 ? 'Your next level\nstarts here.'
-                                : 'Welcome back\nto your world.',
+                                : 'Welcome back\nto Membership.',
                             style: const TextStyle(
                                 fontSize: 40,
                                 height: 1.05,
@@ -201,7 +201,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                 child: Text(
                                     isSignUp
                                         ? 'Create my membership'
-                                        : 'Enter Luma',
+                                        : 'Enter Membership',
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w800)))),
                         const SizedBox(height: 16),
@@ -212,7 +212,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                 child: Text(
                                     isSignUp
                                         ? 'Already a member? Sign in'
-                                        : 'New to Luma? Create an account',
+                                        : 'New here? Create an account',
                                     style: const TextStyle(
                                         color: Colors.white70)))),
                       ]),
@@ -605,7 +605,7 @@ class _PremiumCompleteCard extends StatelessWidget {
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800)),
         SizedBox(height: 8),
         Text(
-            'Premium includes every available benefit. You are already getting the complete Luma experience.',
+            'Premium includes every available benefit. You are already getting the complete Membership experience.',
             textAlign: TextAlign.center,
             style: TextStyle(color: Brand.muted, height: 1.4))
       ]));
