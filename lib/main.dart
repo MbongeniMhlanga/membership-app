@@ -52,6 +52,13 @@ class _AuthScreenState extends State<AuthScreen> {
   bool busy = false;
   String tier = 'starter';
 
+  @override
+  void dispose() {
+    name.dispose();
+    email.dispose();
+    super.dispose();
+  }
+
   /// Submits the selected authentication flow and displays errors.
   Future<void> submit() async {
     setState(() => busy = true);

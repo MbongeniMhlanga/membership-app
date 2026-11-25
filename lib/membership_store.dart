@@ -69,13 +69,23 @@ class MembershipStore extends ChangeNotifier {
 
   /// Creates and persists a new profile, preventing duplicate emails.
   Future<String?> signUp(String name, String email, String membershipId) async {
+    final normalizedName = name.trim();
     final normalized = email.trim().toLowerCase();
+    if (normalizedName.isEmpty) {
+      return 'Please enter your full name.';
+    }
+    if (normalized.isEmpty) {
+      return 'Please enter your email address.';
+    }
+    if (!normalized.contains('@') || !normalized.contains('.')) {
+      return 'Please enter a valid email address.';
+    }
     if (users.any((user) => user.email.toLowerCase() == normalized)) {
       return 'That email address is already registered.';
     }
     final user = MemberUser(
         id: 'usr_${DateTime.now().millisecondsSinceEpoch}',
-        name: name.trim(),
+        name: normalizedName,
         email: normalized,
         membershipId: membershipId);
     users = [...users, user];
