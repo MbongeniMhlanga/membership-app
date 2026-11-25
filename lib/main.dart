@@ -20,10 +20,48 @@ class MembershipApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Membership',
         theme: ThemeData(
-            colorScheme:
-                ColorScheme.fromSeed(seedColor: const Color(0xFF5B4BDB)),
-            useMaterial3: true,
-            scaffoldBackgroundColor: const Color(0xFFF7F7FB)),
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color(0xFF6750E8),
+            brightness: Brightness.light,
+          ),
+          scaffoldBackgroundColor: const Color(0xFFF7F7FC),
+          fontFamily: 'Arial',
+          cardTheme: CardThemeData(
+            margin: EdgeInsets.zero,
+            elevation: 0,
+            color: Colors.white,
+            surfaceTintColor: Colors.transparent,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24),
+            ),
+          ),
+          inputDecorationTheme: InputDecorationTheme(
+            filled: true,
+            fillColor: Colors.white,
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(18),
+              borderSide: BorderSide.none,
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(18),
+              borderSide: const BorderSide(color: Color(0xFFE8E5F1)),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(18),
+              borderSide:
+                  const BorderSide(color: Color(0xFF6750E8), width: 1.5),
+            ),
+          ),
+          navigationBarTheme: NavigationBarThemeData(
+            height: 74,
+            elevation: 0,
+            backgroundColor: Colors.white,
+            indicatorColor: const Color(0xFFE9E5FF),
+          ),
+        ),
         home: const AuthGate(),
       );
 }
@@ -84,8 +122,19 @@ class _AuthScreenState extends State<AuthScreen> {
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Icon(Icons.auto_awesome,
-                              size: 42, color: Color(0xFF5B4BDB)),
+                          Container(
+                              padding: const EdgeInsets.all(14),
+                              decoration: BoxDecoration(
+                                  color: const Color(0xFF6750E8),
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: const [
+                                    BoxShadow(
+                                        color: Color(0x336750E8),
+                                        blurRadius: 20,
+                                        offset: Offset(0, 8))
+                                  ]),
+                              child: const Icon(Icons.auto_awesome,
+                                  size: 30, color: Colors.white)),
                           const SizedBox(height: 22),
                           Text(
                               isSignUp
@@ -94,7 +143,9 @@ class _AuthScreenState extends State<AuthScreen> {
                               style: Theme.of(context)
                                   .textTheme
                                   .headlineMedium
-                                  ?.copyWith(fontWeight: FontWeight.bold)),
+                                  ?.copyWith(
+                                      fontWeight: FontWeight.w800,
+                                      letterSpacing: -0.5)),
                           const SizedBox(height: 8),
                           Text(isSignUp
                               ? 'Join today and choose the benefits that fit you.'
@@ -134,6 +185,12 @@ class _AuthScreenState extends State<AuthScreen> {
                               width: double.infinity,
                               child: FilledButton(
                                   onPressed: busy ? null : submit,
+                                  style: FilledButton.styleFrom(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 17),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(18))),
                                   child: Text(isSignUp
                                       ? 'Create profile'
                                       : 'Sign in'))),
@@ -221,10 +278,13 @@ class AppHeader extends StatelessWidget {
               style: Theme.of(context)
                   .textTheme
                   .headlineSmall
-                  ?.copyWith(fontWeight: FontWeight.bold)),
-          if (subtitle != null) Text(subtitle!)
+                  ?.copyWith(fontWeight: FontWeight.w800, letterSpacing: -0.5)),
+          if (subtitle != null)
+            Text(subtitle!,
+                style: TextStyle(color: Colors.grey.shade600, height: 1.4))
         ])),
         PopupMenuButton<String>(
+            icon: const Icon(Icons.more_horiz_rounded),
             onSelected: (value) => accountAction(context, value),
             itemBuilder: (_) => const [
                   PopupMenuItem(value: 'signout', child: Text('Sign out')),
@@ -248,27 +308,36 @@ class HomePage extends StatelessWidget {
       Expanded(
           child: ListView(padding: const EdgeInsets.all(22), children: [
         Card(
-            color: const Color(0xFF5B4BDB),
+            clipBehavior: Clip.antiAlias,
             child: Padding(
-                padding: const EdgeInsets.all(22),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text('CURRENT MEMBERSHIP',
-                          style: TextStyle(
-                              color: Colors.white70,
-                              fontSize: 12,
-                              letterSpacing: 1.2)),
-                      const SizedBox(height: 8),
-                      Text(membership.name,
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold)),
-                      const SizedBox(height: 4),
-                      Text('${membership.features.length} benefits included',
-                          style: const TextStyle(color: Colors.white70))
-                    ]))),
+                padding: EdgeInsets.zero,
+                child: Container(
+                    padding: const EdgeInsets.all(24),
+                    decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                            colors: [Color(0xFF6750E8), Color(0xFF8A75F5)],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight)),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text('CURRENT MEMBERSHIP',
+                              style: TextStyle(
+                                  color: Colors.white70,
+                                  fontSize: 12,
+                                  letterSpacing: 1.2)),
+                          const SizedBox(height: 8),
+                          Text(membership.name,
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w800,
+                                  letterSpacing: -0.5)),
+                          const SizedBox(height: 4),
+                          Text(
+                              '${membership.features.length} benefits included',
+                              style: const TextStyle(color: Colors.white70))
+                        ])))),
         const SizedBox(height: 24),
         Text('Your features',
             style: Theme.of(context)
@@ -290,9 +359,18 @@ class FeatureTile extends StatelessWidget {
   Widget build(BuildContext context) => Card(
       margin: const EdgeInsets.only(bottom: 10),
       child: ListTile(
-          leading: const CircleAvatar(child: Icon(Icons.check)),
-          title: Text(feature.name),
-          subtitle: const Text('Included in your membership')));
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+          leading: Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                  color: const Color(0xFFEDEAFF),
+                  borderRadius: BorderRadius.circular(14)),
+              child: const Icon(Icons.check_rounded, color: Color(0xFF6750E8))),
+          title: Text(feature.name,
+              style: const TextStyle(fontWeight: FontWeight.w700)),
+          subtitle: Text('Included in your membership',
+              style: TextStyle(color: Colors.grey.shade600))));
 }
 
 /// Shows the current tier and its included features.
