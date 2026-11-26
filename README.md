@@ -22,11 +22,7 @@ The app supports local sign-in, new member registration, membership upgrades, pe
 
 - Flutter SDK with Dart 3 or later.
 - Android Studio and an Android SDK for Android development, or Chrome/Windows for desktop testing.
-- Java 21 for Android builds. The project is configured to use:
-
-  ```text
-  C:\Program Files\Java\jdk-21
-  ```
+- Java 21 for Android builds. If Flutter does not detect Java 21 automatically, configure it with the path to your local JDK 21 installation.
 
 For Windows plugin builds, enable Developer Mode so Flutter can create symlinks:
 
@@ -36,16 +32,17 @@ start ms-settings:developers
 
 ## Setup
 
-Clone the repository and open the project directory:
+Clone the repository and enter the project directory:
 
 ```powershell
-cd C:\Users\MbongeniMhlanga\Documents\GitHub\membership-app
+git clone <repository-url>
+cd membership-app
 ```
 
-Configure Flutter to use Java 21 if needed:
+Configure Flutter to use Java 21 if needed. Replace `<path-to-jdk-21>` with your local JDK 21 installation path:
 
 ```powershell
-flutter config --jdk-dir="C:\Program Files\Java\jdk-21"
+flutter config --jdk-dir="<path-to-jdk-21>"
 ```
 
 Install dependencies:
